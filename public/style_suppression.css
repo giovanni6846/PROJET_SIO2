@@ -1,0 +1,82 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Headings */
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Forms */
+form {
+    margin-bottom: 20px;
+}
+
+form input[type="hidden"] {
+    display: none;
+}
+
+form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Deplacement items */
+div span {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Inline form */
+form[style="display: inline;"] {
+    display: inline;
+}
+
+/* Error message */
+.error-message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffdddd;
+    color: #d9534f;
+    border: 1px solid #d9534f;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-align: center;
+}

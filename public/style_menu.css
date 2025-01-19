@@ -1,0 +1,66 @@
+/* Styles de base pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+/* En-tête avec le titre de la page */
+header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Menu de navigation en haut */
+nav {
+    background-color: #34495e;
+    overflow: hidden;
+}
+
+nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #1abc9c;
+}
+
+/* Conteneur principal du contenu */
+.container {
+    padding: 20px;
+}
+
+/* Style pour chaque élément de menu */
+.menu-item {
+    margin: 20px;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: #2980b9;
+}
+
+/* Pied de page fixe */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

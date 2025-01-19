@@ -1,0 +1,84 @@
+body {
+    background: #f0aa2a;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Centrer le titre principal */
+h1 {
+    text-align: center;
+    color: #333;
+    margin: 20px 0;
+    font-size: 2em;
+}
+
+/* Conteneur principal */
+div {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 192, 203, 0.2); /* Fond rose transparent */
+    border: 1px solid rgba(255, 192, 203, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center; /* Centrer le contenu */
+}
+
+/* Formulaire */
+form {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Titres des sections */
+form h1 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Champs d'entrée */
+input[type='text'],
+input[type='password'] {
+    width: calc(100% - 20px); /* Largeur ajustée avec padding */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Boutons */
+button[type='submit'] {
+    background-color: #53af57;
+    color: white;
+    padding: 12px 20px;
+    margin: 15px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 100%;
+}
+
+button[type='submit']:hover {
+    background-color: white;
+    color: #53af57;
+    border: 1px solid #53af57;
+}
+
+/* Message d'erreur */
+label b {
+    color: red;
+    font-size: 0.9em;
+    display: block;
+    margin-top: 10px;
+}
