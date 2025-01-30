@@ -109,11 +109,13 @@ h2 {
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 /* Individual Frais Card */
 .frais-card {
     flex: 1; /* All cards have equal width */
+    min-width: 250px; /* Prevent cards from becoming too small */
     padding: 15px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -122,7 +124,8 @@ h2 {
 }
 
 .frais-deplacement {
-    flex: 1; /* All cards have equal width */
+    flex: 1;
+    min-width: 250px;
     padding: 15px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -130,7 +133,7 @@ h2 {
     text-align: left;
 }
 
-.frais-deplacement h3{
+.frais-deplacement h3 {
     color: #343a40;
     margin-bottom: 10px;
     border-bottom: 2px solid #007bff;
@@ -151,6 +154,41 @@ h2 {
     margin-bottom: 10px;
     border-bottom: 2px solid #007bff;
     padding-bottom: 5px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .detail_frais {
+        flex-direction: column; /* Stack cards vertically */
+        gap: 15px; /* Reduce spacing between cards */
+        padding: 15px;
+    }
+
+    .frais-card {
+        flex: none; /* Cards take full width */
+        width: 100%; /* Full width on smaller screens */
+        min-width: auto; /* Remove the minimum width constraint */
+    }
+
+    .frais-deplacement {
+        flex: none;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .detail_frais {
+        padding: 10px; /* Further reduce padding */
+    }
+
+    .frais-card {
+        padding: 10px; /* Smaller padding for cards */
+        font-size: 14px; /* Adjust text size */
+    }
+
+    .frais-card h3 {
+        font-size: 16px; /* Adjust heading size */
+    }
 }
 
 .ajouter,
@@ -206,7 +244,6 @@ footer {
     color: #ffffff;
     text-align: center;
     padding: 10px;
-    position: fixed;
     bottom: 0;
     width: 100%;
 }

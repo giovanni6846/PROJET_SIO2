@@ -2,6 +2,10 @@ body {
     background: #f0aa2a;
     margin: 0;
     font-family: Arial, sans-serif;
+    display: flex; /* Ajout pour centrer le contenu */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 100vh; /* Hauteur de l'écran pour un centrage vertical parfait */
 }
 
 /* Centrer le titre principal */
@@ -15,7 +19,6 @@ h1 {
 /* Conteneur principal */
 div {
     width: 50%;
-    margin: auto;
     padding: 20px;
     background: rgba(255, 192, 203, 0.2); /* Fond rose transparent */
     border: 1px solid rgba(255, 192, 203, 0.5);

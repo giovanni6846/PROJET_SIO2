@@ -1,49 +1,3 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
-
-.message-aucune-mission {
-    font-size: 24px;
-    color: #ff0000;
-    border: 1px solid #ccc;
-    padding: 20px;
-    background-color: #f8f8f8;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-nav {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    text-align: center;
-    background-color: #f1f1f1;
-    padding: 10px 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #333;
-}
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    background-color: #f1f1f1;
-    padding: 10px 0;
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
-}
-
 /* Base styles */
 body {
     font-family: Arial, sans-serif;
@@ -62,6 +16,7 @@ header {
 
 header h1 {
     margin: 0;
+    font-size: 24px;
 }
 
 /* Navigation styles */
@@ -84,167 +39,18 @@ nav a:hover {
     text-decoration: underline;
 }
 
-/* Main container styles */
-.container {
-    max-width: 1200px;
+/* Message d'erreur */
+.message-aucune-mission {
+    background-color: #ffc107;
+    color: #343a40;
+    font-size: 18px;
+    text-align: center;
+    padding: 15px;
     margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-h2 {
-    color: #343a40;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Mission details styles */
-.mission-details {
-    margin: 20px 0;
-}
-
-.mission-details h3 {
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 5px;
-}
-
-.mission-details p {
-    font-size: 16px;
-    line-height: 1.5;
-    margin: 10px 0;
-}
-
-.mission-details p strong {
-    color: #343a40;
-}
-
-/* Button container for navigation buttons */
-.button-container {
-    display: flex;
-    justify-content: space-between; /* Buttons aligned to left and right */
-    align-items: center;
-    margin: 20px 0; /* Spacing around buttons */
-    padding: 0 20px; /* Add padding to create space from page edges */
-}
-
-/* Button styles */
-.button-container button {
-    font-size: 18px; /* Larger text */
-    padding: 15px 30px; /* Increase button size */
-    background-color: #007bff; /* Button background */
-    color: white; /* Button text */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-}
-
-.button-container button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-.detail_frais {
-    display: flex;
-    justify-content: space-between; /* Space between the cards */
-    gap: 20px; /* Spacing between cards */
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
+    max-width: 600px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-/* Individual Frais Card */
-.frais-card {
-    flex: 1; /* All cards have equal width */
-    padding: 15px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.frais-deplacement {
-    flex: 1; /* All cards have equal width */
-    padding: 15px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
-.frais-deplacement h3{
-    color: #343a40;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 5px;
-}
-
-/* Total Card (Special styling) */
-.frais-card.total {
-    background-color: #007bff;
-    color: #ffffff;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* Card Title */
-.frais-card h3 {
-    color: #343a40;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 5px;
-}
-
-.ajouter,
-.supprimer {
-    text-align: center; /* Centre le contenu horizontalement */
-    margin: 20px 0; /* Ajoute de l'espace entre les sections */
-}
-
-.ajouter button,
-.supprimer button,
-.status button{
-    font-size: 16px; /* Taille de la police */
-    padding: 10px 20px; /* Espacement interne des boutons */
-    border: none; /* Retire les bordures par défaut */
-    border-radius: 5px; /* Ajoute des coins arrondis */
-    cursor: pointer; /* Change le curseur en pointeur */
-    color: #fff; /* Couleur du texte */
-}
-
-.ajouter button {
-    background-color: #28a745; /* Vert pour le bouton Ajouter */
-}
-
-.supprimer button {
-    background-color: #dc3545; /* Rouge pour le bouton Supprimer */
-}
-
-.ajouter button:hover,
-.supprimer button:hover {
-    opacity: 0.8; /* Réduit légèrement l'opacité au survol */
-}
-
-.ajouter button:focus,
-.supprimer button:focus {
-    outline: none; /* Retire le contour par défaut au focus */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Ajoute une légère ombre */
-}
-
-
-.error-message {
-    color: red;
-    font-size: 18px; /* Taille du texte */
-    font-weight: bold;
-    text-align: center;
-    margin-top: 20px; /* Espacement au-dessus */
-}
-
-
 
 /* Footer styles */
 footer {
@@ -252,102 +58,8 @@ footer {
     color: #ffffff;
     text-align: center;
     padding: 10px;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
-}
-
-.status-text.valider {
-    background-color: #28a745; /* Vert pour les statuts validés */
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.status-text.En-Cours {
-    background-color: #ffc107; /* Jaune pour les statuts en cours */
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.status-text.Rejeter {
-    background-color: #dc3545; /* Rouge pour les statuts refusés */
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.status-text.A-Valider {
-    background-color: #dc3545; /* Rouge pour les statuts refusés */
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.ajouter, .supprimer, .status {
-    text-align: center;
-    margin: 10px 0;
-}
-
-.status button {
-    background-color: #17a2b8; /* Bleu clair pour le bouton "Confirmer" */
-    color: white;
-}
-
-.status button:hover {
-    background-color: #138496;
-}
-
-button.disabled {
-    background-color: #d3d3d3; /* Gris clair */
-    color: #888888; /* Couleur du texte gris */
-    cursor: not-allowed; /* Changer le curseur pour montrer que le bouton est désactivé */
-}
-
-button:disabled {
-    pointer-events: none; /* Désactiver l'interaction avec le bouton */
-}
-
-/* Conteneur parent pour centrer les boutons */
-.boutons-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Style général des boutons */
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    margin: 5px;
-}
-
-/* Bouton Accepter */
-.accepter button {
-    background-color: #28a745; /* Vert pour Accepter */
-    color: white;
-    transition: background-color 0.3s ease;
-}
-
-.accepter button:hover {
-    background-color: #218838;
-}
-
-/* Bouton Rejeter */
-.rejeter button {
-    background-color: #dc3545; /* Rouge pour Rejeter */
-    color: white;
-    transition: background-color 0.3s ease;
-}
-
-.rejeter button:hover {
-    background-color: #c82333;
+    font-size: 14px;
 }

@@ -14,7 +14,8 @@
     "spipu/html2pdf": "^5.2",
     "ext-sodium": "*",
     "ext-curl": "*",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "tecnickcom/tcpdf": "^6.8"
   },
   "autoload": {
     "psr-4": {

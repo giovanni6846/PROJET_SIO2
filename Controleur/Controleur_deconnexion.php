@@ -9,5 +9,4 @@ use App\Vue\Vue_Tableau_de_Bord;
 
 unset($_SESSION);
 session_destroy();
-echo"detruit";
 include "Controleur/Controleur_visiteur.php";

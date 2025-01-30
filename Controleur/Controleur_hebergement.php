@@ -65,7 +65,6 @@ if ($find_hebergement != NULL) {
             }
         }
     }
-
 }
 $justificatif = \App\Modele\Modele_Mission::mission_justificatif($mission->getId());
 $Vue->setEntete(new \App\Vue\Vue_Structure_Entete_TDB());

@@ -27,14 +27,12 @@ class Vue_Aucune_Mission extends Vue_Composant
         <!-- Navigation -->
         <nav>
             <a href='index.php?action=tableau_de_bord'>Tableau de Bord</a>
-            <a href='index.php?action=ajouter_note_frais'>Ajouter une Note de Frais</a>
-            <a href='index.php?action=consulter_notes'>Consulter les Notes de Frais</a>
             <a href='index.php?action=deconnexion'>Se Déconnecter</a>
         </nav>
 
         <!-- Message d'erreur -->
         <div class="message-aucune-mission">
-            Aucune mission disponible
+            Aucune mission à valider
         </div>
 
         <!-- Footer -->

@@ -32,6 +32,7 @@ class Vue_Menu_Principale extends Vue_Composant
     <nav>
         <a href='index.php?action=mission'>Tableau de Bord</a>
         <a href='index.php?action=ajouter_NDF'>Ajouter une Note de Frais</a>
+        <a href='index.php?action=mon_espace'>Mon Espace</a>
         <a href='index.php?action=deconnexion'>Se Déconnecter</a>
     </nav>
 

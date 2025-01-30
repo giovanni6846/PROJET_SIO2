@@ -18,13 +18,21 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
+use App\Entity\Ville;
 
 class Modele_Ville
 {
     public static function ville()
     {
         global $entityManager;
-        $deplacement = $entityManager->getRepository(Ville::class)->findAll();
-        return $deplacement;
+        $ville = $entityManager->getRepository(Ville::class)->findAll();
+        return $ville;
+    }
+
+    public static function findVille($idVille)
+    {
+        global $entityManager;
+        $ville = $entityManager->getRepository(Ville::class)->findBy(["id" => $idVille]);
+        return $ville[0];
     }
 }

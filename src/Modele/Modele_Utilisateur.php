@@ -36,4 +36,15 @@ class Modele_Utilisateur
             return true;
         }
     }
+    public static function utilisateur($id)
+    {
+        global $entityManager;
+        return $entityManager->getRepository(Employe::class)->findOneBy(['id' => $id]);
+    }
+
+    public static function utilisateurs()
+    {
+        global $entityManager;
+        return $entityManager->getRepository(Employe::class)->findAll();
+    }
 }

@@ -177,6 +177,7 @@ class Modele_Mission
         return $content;
     }
 
+
     public static function mission_a_valider(){
         global $entityManager;
         $mission = $entityManager->getRepository(Mission::class)->findBy(["status" => "A-Valider"]);
@@ -192,11 +193,11 @@ class Modele_Mission
         if ($date_debut > $date_fin) {
             return False;
         }
-        $destination = $entityManager->getRepository(Ville::class)->findBy(['nom_ville' => $ville]);
+        $destination = $entityManager->getRepository(Ville::class)->findBy(['id' => $ville]);
         $employer = $entityManager->getRepository(Employe::class)->find($id);
         $dateDebut = new DateTime($date_debut);
         $dateFin = new DateTime($date_fin);
-        $mission = New Mission($mission,$dateDebut,$dateFin,0,0,$destination[0],$employer,null,null,"");
+        $mission = New Mission($mission,$dateDebut,$dateFin,0,0,$destination[0],$employer,null,"","En-Cours");
         $entityManager->persist($mission);
         $entityManager->flush();
         return $mission;

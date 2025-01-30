@@ -62,6 +62,15 @@ switch ($typeConnexion) {
                     case "status":
                         include "Controleur/Controleur_status.php";
                         break;
+                    case "pdf":
+                        include "Controleur/Controleur_PDF.php";
+                        break;
+                    case "mon_espace":
+                        include "Controleur/Controleur_Espace.php";
+                        break;
+                    case "maj_user":
+                        include "Controleur/Controleur_maj_user.php";
+                        break;
                     default:
                         include "Controleur/Controleur_connecter.php";
                         break;
@@ -89,6 +98,9 @@ switch ($typeConnexion) {
                     case "rejeter";
                         include "Controleur/Controleur_rejeter.php";
                         break;
+                    case "pdf":
+                        include "Controleur/Controleur_PDF.php";
+                        break;
                     default:
                         include "Controleur/Controleur_connecter.php";
                         break;
@@ -98,13 +110,19 @@ switch ($typeConnexion) {
                 switch ($action) {
                     case "gestion_utilisateurs":
                         include "Controleur/Controleur_gestion_utilisateurs.php";
+                        break;
                     case "deconnexion":
                         include "Controleur/Controleur_deconnexion.php";
+                        break;
+                    case "maj_user":
+                        include "Controleur/Controleur_maj_user.php";
+                        break;
+                    case "create_user":
+                        include "Controleur/Controleur_create_user.php";
                         break;
                     default:
                         include "Controleur/Controleur_connecter.php";
                         break;
-
                 }
                 break;
         }

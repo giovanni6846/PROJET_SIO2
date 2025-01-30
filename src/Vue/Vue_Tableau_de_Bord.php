@@ -35,7 +35,8 @@ class Vue_Tableau_de_Bord extends Vue_Composant
         <!-- Navigation -->
         <nav>
             <a href='index.php?action=tableau_de_bord'>Tableau de Bord</a>
-            <a href='index.php?action=ajouter_note_frais'>Ajouter une Note de Frais</a>
+            <a href='index.php?action=ajouter_NDF'>Ajouter une Note de Frais</a>
+            <a href='index.php?action=mon_espace'>Mon Espace</a>
             <a href='index.php?action=deconnexion'>Se Déconnecter</a>
         </nav>
 
@@ -119,6 +120,13 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                 </div>
             <?php endif; ?>
 
+            <div class="button-imp">
+                <form action="index.php" method="post">
+                    <input type="hidden" name="mission" value="<?= htmlspecialchars($this->mission->getId()) ?>">
+                    <button type="submit" name="action" value="pdf">Impression PDF</button>
+                </form>
+            </div>
+
             <div id="justificatifsContainer"></div> <!-- Ici vont être ajoutés les selects -->
 
             <!-- Détails des Frais -->
@@ -136,7 +144,7 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                 <div class="frais-card">
                     <h3>Repas</h3>
                     <p><strong>Nombre de Repas :</strong> <?= htmlspecialchars($this->mission->getNbRepas()) ?></p>
-                    <p><strong>Coût Total :</strong> <?= (int)(htmlspecialchars($this->mission->getNbRepas()) * 20 / 3) ?> €</p>
+                    <p><strong>Coût Total :</strong> <?= (int)(htmlspecialchars($this->mission->getNbRepas()) * 20) ?> €</p>
                 </div>
 
                 <div class="frais-deplacement">
@@ -164,7 +172,7 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                 <div class="frais-card total">
                     <h3>Total</h3>
                     <p><strong>Coût Total Mission :</strong>
-                        <?=  htmlspecialchars($this->mission->getNbNuit()) * 75 + (int)(htmlspecialchars($this->mission->getNbRepas()) * 20 / 3) + (float)(htmlspecialchars(Modele_Mission::cout($this->mission))) ?> €
+                        <?=  htmlspecialchars($this->mission->getNbNuit()) * 75 + (int)(htmlspecialchars($this->mission->getNbRepas()) * 20) + (float)(htmlspecialchars(Modele_Mission::cout($this->mission))) ?> €
                     </p>
                 </div>
             </div>

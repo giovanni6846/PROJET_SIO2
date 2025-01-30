@@ -34,6 +34,21 @@ class Modele_Transport
         }
     }
 
+    public static function cout_transport($deplacement){
+        global $entityManager;
+        $content = 0;
+            if ($deplacement->getTransport()->getLibelleTransport() == "Avion"){
+                $content =  $deplacement->getCout() ;
+            }elseif ($deplacement->getTransport()->getLibelleTransport() == "TGV"){
+                $content =  $deplacement->getCout() ;
+            }elseif ($deplacement->getTransport()->getLibelleTransport() == "Tram"){
+                $content =  5 ;
+            }elseif ($deplacement->getTransport()->getVoiture() != null){
+                $content =  $deplacement->getCout() ;
+            }
+        return $content;
+    }
+
     public static function ajout_transport($id)
     {
         global $entityManager;

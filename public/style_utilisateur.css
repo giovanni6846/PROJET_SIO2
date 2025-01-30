@@ -1,0 +1,296 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Navigation */
+nav {
+    background-color: #444;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #007bff;
+}
+
+.utilisateur {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.utilisateur .details {
+    flex: 1; /* Occupe le maximum d'espace disponible */
+}
+
+.utilisateur .form-container {
+    flex: 0 0 40%; /* Occupe 40% de la largeur totale */
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: 20px;
+}
+
+.utilisateur .form-container h2 {
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+}
+
+.utilisateur .details strong {
+    color: #007bff; /* Bleu */
+    font-size: 1.2em; /* Taille de police plus grande */
+}
+
+
+.utilisateur .form-group {
+    margin-bottom: 15px;
+}
+
+.utilisateur .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.utilisateur .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #333;
+}
+
+.utilisateur .form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Update button section */
+.but-maj {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.but-maj form {
+    display: inline-block;
+}
+
+.but-maj button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.but-maj button:hover {
+    background-color: #218838;
+}
+
+.but-maj button:focus {
+    outline: none;
+}
+
+/* Container de base */
+.form-container {
+    position: relative;
+    padding: 20px;
+}
+
+/* Champ spécifique */
+.form-group {
+    margin: 20px 0;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between; /* Espace entre le titre et l'input */
+    align-items: center; /* Centrer verticalement */
+    margin-bottom: 20px; /* Espacement en bas du header */
+}
+
+.modal {
+    display: none; /* Cache la modal par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+}
+
+/* Style pour le champ de recherche */
+#search-bar {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px; /* Ajuster la largeur comme nécessaire */
+}
+
+/* Si nécessaire, ajustez l'apparence de l'input */
+#search-bar:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Améliorer le rendu du texte dans le select */
+#paged-select {
+    width: 100%; /* Prend toute la largeur disponible */
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Bordure plus nette */
+    font-family: Arial, sans-serif; /* Spécifier une police nette */
+    -webkit-font-smoothing: antialiased; /* Activer l'anti-aliasing sur les navigateurs Webkit */
+    -moz-osx-font-smoothing: grayscale; /* Lissage sur Firefox sur macOS */
+    text-rendering: optimizeLegibility; /* Optimiser la lisibilité du texte */
+    background-color: #fff; /* Assurer une couleur de fond uniforme */
+    color: #333; /* Couleur du texte */
+}
+
+/* Option d'amélioration pour le focus (mise en évidence lors de la sélection) */
+#paged-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+/* Modal (cachée par défaut) */
+/* Agrandir la modale */
+#modal-ville {
+    display: none; /* Assurez-vous que la modale est visible */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Prend toute la largeur de l'écran */
+    height: 100%; /* Prend toute la hauteur de l'écran */
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour l'arrière-plan */
+    z-index: 9999; /* S'assurer que la modale est au-dessus de tout autre contenu */
+}
+
+/* Contenu de la modale */
+#modal-ville .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centrer la modale */
+    background-color: white;
+    padding: 30px;
+    width: 80%; /* Largeur de la modale (80% de la largeur de l'écran) */
+    max-width: 1000px; /* Limite la largeur à 1000px max */
+    max-height: 80%; /* Limite la hauteur à 80% de l'écran */
+    overflow: auto; /* Si le contenu dépasse, ajouter un défilement */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre portée pour l'effet */
+}
+
+/* Taille du texte du titre */
+#modal-ville .modal-content h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+/* Agrandir le bouton */
+#modal-ville .modal-content button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#modal-ville .modal-content button:hover {
+    background-color: #45a049;
+}
+
+
+/* Animation de zoom et de fondu */
+@keyframes fadeInScale {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Bouton de fermeture */
+#close-modal-ville {
+    margin-top: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#close-modal-ville:hover {
+    background-color: #0056b3;
+}
+

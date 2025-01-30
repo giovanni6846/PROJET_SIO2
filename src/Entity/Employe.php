@@ -33,7 +33,7 @@ class Employe
     private string $num_tel;
 
    #[ManyToOne(targetEntity: Ville::class, inversedBy: 'ville')]
-   private Ville $ville;
+   private ?Ville $ville;
 
     #[Column(type: 'string', length: 15)]
     private string $mdp;
@@ -44,7 +44,7 @@ class Employe
     #[Column(type: 'integer')]
     private int $role;
 
-    public function __construct(string $nom, string $prenom, string $num_tel , Ville $ville,  string $mdp , string $email, int $role )
+    public function __construct(string $nom, string $prenom, string $num_tel , ?Ville $ville,  string $mdp , string $email, int $role )
     {
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -60,12 +60,12 @@ class Employe
         return $this->id;
     }
 
-    public function getVille(): Ville
+    public function getVille(): ?Ville
     {
         return $this->ville;
     }
 
-    public function setVille(Ville $ville): void
+    public function setVille(?Ville $ville): void
     {
         $this->ville = $ville;
     }
@@ -100,14 +100,14 @@ class Employe
         $this->num_tel = $num_tel;
     }
 
-    public function getMotdepasse(): string
+    public function getMdp(): string
     {
-        return $this->motdepasse;
+        return $this->mdp;
     }
 
-    public function setMotdepasse(string $mdp): void
+    public function setMdp(string $mdp): void
     {
-        $this->motdepasse = $mdp;
+        $this->mdp = $mdp;
     }
 
     public function getEmail(): ?string
