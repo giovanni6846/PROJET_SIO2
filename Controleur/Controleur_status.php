@@ -8,7 +8,7 @@ use App\Vue\Vue_Connexion_Formulaire_client;
 global $entityManager;
 
 $mission = \App\Modele\Modele_Mission::mission_search($_POST['mission']);
-$mission->setStatus("A-Valider");
+$mission->setStatus("A-Validé");
 $entityManager->persist($mission);
 $entityManager->flush();
 $justificatif = \App\Modele\Modele_Mission::mission_justificatif($mission->getId());

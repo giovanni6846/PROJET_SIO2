@@ -30,7 +30,7 @@ class Modele_Mission
         $mostRecentDate = null;
         if ($role == 2){
             $missions = $entityManager->getRepository(Mission::class)->findBy([
-                'status' => "A-Valider"
+                'status' => "A-Validé"
             ]);
 
             if ($missions == null) {

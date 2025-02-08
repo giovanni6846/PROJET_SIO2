@@ -7,7 +7,7 @@ use App\Entity\Voiture;
 use App\Entity\Transport;
 use App\Modele\Modele_Mission;
 use App\Utilitaire\Vue_Composant;
-class Vue_Saisie_Hebergement extends Vue_Composant
+class Vue_Saisie_Frais extends Vue_Composant
 {
     private string $msgErreur;
 
@@ -81,32 +81,6 @@ class Vue_Saisie_Hebergement extends Vue_Composant
                     <button type="submit" name="action" value="deplacement">Enregistrer Déplacement</button>
                 </form>
             </div>
-
-            <script>
-                function toggleSelects(selectedId, otherId) {
-                    var selectedElement = document.getElementById(selectedId);
-                    var otherElement = document.getElementById(otherId);
-
-                    if (selectedElement.value) {
-                        otherElement.disabled = true;
-                    } else {
-                        otherElement.disabled = false;
-                    }
-                }
-
-                function showKilometersField() {
-                    var voitureSelect = document.getElementById('voiture');
-                    var kilometersField = document.getElementById('kilometersField');
-
-                    if (voitureSelect.value) {
-                        kilometersField.style.display = 'block';
-                    } else {
-                        kilometersField.style.display = 'none';
-                    }
-                }
-            </script>
-
-
             <div class="section repas">
             <h1>Saisir Repas <?= htmlspecialchars($this->mission->getNomMission()) ?></h1>
             <form action="index.php" method="post" enctype="multipart/form-data">

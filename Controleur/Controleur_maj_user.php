@@ -22,12 +22,12 @@ if ($utilisateur->getRole() == 3){
     $Vue->setEntete(new \App\Vue\Vue_Structure_Entete_Utilisateur());
     $Vue->addToCorps(new \App\Vue\Vue_Utilisateur($utilisateur, $ville));
 }elseif ($utilisateur->getRole() == 1){
-    $id = $_POST['id'];
+    $id = $_POST['id_utilisateur'];
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $telephone = $_POST['num_tel'];
-    $idVille = $_POST['ville_id'];
+    $idVille = $_POST['id'];
     $mdp = $_POST['mot_de_passe'];
     $role = $_POST['role'];
     $Ville = Modele_Ville::findVille($idVille);
@@ -44,5 +44,6 @@ if ($utilisateur->getRole() == 3){
     $utilisateurs = Modele_Utilisateur::utilisateurs();
     $ville = Modele_Ville::ville();
     $Vue->setEntete(new \App\Vue\Vue_Structure_Entete_gestion_utilisateurs());
-    $Vue->addToCorps(new \App\Vue\Vue_gestion_utilisateurs("",$utilisateurs, $ville));
+    $Vue->addToCorps(new \App\Vue\Vue_gestion_utilisateurs("",$utilisateurs));
+    $Vue->addToCorps(new \App\Vue\Vue_Selection_Ville($ville));
 }

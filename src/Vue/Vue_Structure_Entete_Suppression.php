@@ -16,7 +16,7 @@ class Vue_Structure_Entete_Suppression  extends Vue_Composant
         <head>
            <meta charset='utf-8'>
             <!-- importer le fichier de style -->
-            <link rel='stylesheet' href='.\public\style_suppression.css' media='screen' type='text/css' />
+            <link rel='stylesheet' href='.\public\Styles_CSS\style_entete_suppression.css' media='screen' type='text/css' />
         </head>
         <body>
             <div id='container'>";

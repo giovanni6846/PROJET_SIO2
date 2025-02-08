@@ -31,7 +31,7 @@ class Vue_Utilisateur   extends Vue_Composant
         <!-- Navigation -->
         <nav>
             <a href='index.php?action=mission'>Tableau de Bord</a>
-            <a href='index.php?action="ajouter_NDF'>Ajouter une Note de Frais</a>
+            <a href='index.php?action=ajouter_NDF'>Ajouter une Note de Frais</a>
             <a href='index.php?action=deconnexion'>Se Déconnecter</a>
         </nav>
         <div class="utilisateur">
@@ -69,99 +69,6 @@ class Vue_Utilisateur   extends Vue_Composant
                 </form>
             </div>
         </div>
-        <div id="modal-ville" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>Choisissez une ville</h3>
-                    <input type="text" id="search-bar" placeholder="Recherchez une ville..." onkeyup="filterCities()" />
-                </div>
-                <select id="paged-select" size="5">
-                    <?php
-                    foreach ($this->ville as $ville) {
-                        ?>
-                        <option value="<?= htmlspecialchars($ville->getNomVille()) ?>"
-                                id="<?= htmlspecialchars($ville->getId()) ?>" >
-                            <?= htmlspecialchars($ville->getNomVille()) ?>, <?= htmlspecialchars($ville->getCpVille()) ?>
-                        </option>
-                        <?php
-                    }
-                    ?>
-                </select>
-                <button id="close-modal-ville">Fermer</button>
-            </div>
-        </div>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                // Sélection des éléments
-                const inputsVille = document.querySelectorAll('input[name="ville[]"]'); // Champs texte pour la ville
-                const inputsVilleId = document.querySelectorAll('input[name="ville_id[]"]'); // Champs cachés pour l'ID
-                const modalVille = document.getElementById('modal-ville');
-                const closeModalVille = document.getElementById('close-modal-ville');
-                const selectVille = document.getElementById('paged-select');
-                const searchBar = document.getElementById('search-bar');
-
-                // Empêcher le focus sur un champ au chargement de la page
-                window.onload = function () {
-                    document.activeElement.blur();
-                };
-
-                // Associer chaque champ de ville à son champ caché correspondant
-                inputsVille.forEach((inputVille, index) => {
-                    inputVille.addEventListener('click', () => {
-                        // Stocke l'index de l'input actif
-                        modalVille.dataset.currentIndex = index;
-                        modalVille.style.display = 'flex';
-                    });
-                });
-
-                // Sélectionner une ville et remplir les champs (double-clic sur une ville)
-                selectVille.addEventListener('dblclick', function (event) {
-                    const selectedOption = event.target;
-
-                    if (selectedOption.tagName === 'OPTION') {
-                        let index = modalVille.dataset.currentIndex;
-
-                        // Mise à jour du champ texte (nom de la ville)
-                        inputsVille[index].value = selectedOption.value;
-                        // Mise à jour du champ caché (ID de la ville)
-                        inputsVilleId[index].value = selectedOption.id;
-
-                        // Fermer la modal après sélection
-                        modalVille.style.display = 'none';
-                    }
-                });
-
-                // Fermer la modal en cliquant sur "Fermer"
-                closeModalVille.addEventListener('click', () => {
-                    modalVille.style.display = 'none';
-                });
-
-                // Fermer la modal si on clique en dehors de son contenu
-                modalVille.addEventListener('click', (e) => {
-                    if (e.target === modalVille) {
-                        modalVille.style.display = 'none';
-                    }
-                });
-
-                // Fonction pour filtrer les villes selon la saisie dans le champ de recherche
-                function filterCities() {
-                    const searchInput = searchBar.value.toLowerCase();
-                    const options = selectVille.getElementsByTagName('option');
-
-                    for (let i = 0; i < options.length; i++) {
-                        const option = options[i];
-                        const cityName = option.textContent.toLowerCase();
-
-                        // Afficher ou masquer les options en fonction de la recherche
-                        option.style.display = cityName.includes(searchInput) ? '' : 'none';
-                    }
-                }
-
-                // Lancer le filtrage à chaque saisie dans la barre de recherche
-                searchBar.addEventListener('keyup', filterCities);
-            });
-
-        </script>
         <?php
     return ob_get_clean(); // Retourne le contenu capturé
     }

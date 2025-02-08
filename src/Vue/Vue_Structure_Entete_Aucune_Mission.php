@@ -18,7 +18,7 @@ class Vue_Structure_Entete_Aucune_Mission  extends Vue_Composant
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
             <title>Aucune Mission Disponible</title>
-            <link rel='stylesheet' href='.\public\aucune_mission.css'> <!-- Lien vers le fichier CSS -->
+            <link rel='stylesheet' href='.\public\Styles_CSS\style_entete_aucune_mission.css'> <!-- Lien vers le fichier CSS -->
         </head>";
     }
 }

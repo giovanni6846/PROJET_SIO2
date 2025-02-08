@@ -20,4 +20,5 @@ use App\Utilitaire\Vue;
     $utilisateurs = Modele_Utilisateur::utilisateurs();
     $ville = \App\Modele\Modele_Ville::ville();
     $Vue->setEntete(new \App\Vue\Vue_Structure_Entete_gestion_utilisateurs());
-    $Vue->addToCorps(new \App\Vue\Vue_gestion_utilisateurs("",$utilisateurs, $ville));
+    $Vue->addToCorps(new \App\Vue\Vue_gestion_utilisateurs("",$utilisateurs));
+    $Vue->addToCorps(new \App\Vue\Vue_Selection_Ville($ville));

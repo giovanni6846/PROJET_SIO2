@@ -2,6 +2,8 @@
 
 use App\Entity\Hebergement;
 use App\Entity\Mission;
+use App\Vue\Vue_Ajouter_NDF;
+
 global $entityManager;
 
 
@@ -14,5 +16,6 @@ if (isset($_POST["mission"]))
 }else{
     $ville = \App\Modele\Modele_Ville::ville();
     $Vue->setEntete(new \App\Vue\Vue_Structure_Entete_Ajouter_NDF());
-    $Vue->addToCorps(new \App\Vue\Vue_Ajouter_NDF("",$ville));
+    $Vue->addToCorps(new \App\Vue\Vue_Ajouter_NDF(""));
+    $Vue->addToCorps(new \App\Vue\Vue_Selection_Ville($ville));
 }

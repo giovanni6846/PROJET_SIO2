@@ -272,7 +272,7 @@ footer {
     text-align: center;
 }
 
-.status-text.A-Valider {
+.status-text.A-Validé {
     background-color: #dc3545; /* Rouge pour les statuts refusés */
     color: white;
     padding: 10px;

@@ -18,7 +18,6 @@ if (!$mission){
             $mission->addDeplacement($deplacer);
         }
     }
-
     if ($msg_erreur == ""){
         if ($mission != NULL) {
             $justificatif = \App\Modele\Modele_Mission::mission_justificatif($mission->getId());
