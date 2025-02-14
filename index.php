@@ -74,7 +74,6 @@ switch ($typeConnexion) {
                     default:
                         include "Controleur/Controleur_connecter.php";
                         break;
-
                 }
                 break;
             case "2":
