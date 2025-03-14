@@ -31,11 +31,15 @@ class Transport
     #[ORM\OneToMany(targetEntity: Deplacer::class, mappedBy: 'transport', cascade: ["persist", "remove"])]
     private Collection $deplacements;
 
-    public function __construct(string $libelle_transport, ?Voiture $voiture = null)
+    #[ManyToOne(targetEntity: Prix::class, inversedBy: 'prix', cascade: ["persist", "remove"])]
+    private Prix $prix;
+
+    public function __construct(string $libelle_transport, ?Voiture $voiture = null, Prix $prix)
     {
         $this->libelle_transport = $libelle_transport;
         $this->voiture = $voiture;
         $this->deplacements = new ArrayCollection();
+        $this->prix = $prix;
     }
 
     public function getId(): int
@@ -84,6 +88,16 @@ class Transport
                 $deplacer->setTransport(null);
             }
         }
+    }
+
+    public function getPrix(): Prix
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(Prix $prix): void
+    {
+        $this->prix = $prix;
     }
 }
 

@@ -164,12 +164,8 @@ class Modele_Mission
         global $entityManager;
         $content = 0;
         foreach ($mission->getDeplacement() as $deplacer) {
-            if ($deplacer->getTransport()->getLibelleTransport() == "Avion"){
+            if ($deplacer->getTransport()->getLibelleTransport() == "Avion" || "Train" || "Tram"){
                 $content = $content + $deplacer->getCout() ;
-            }elseif ($deplacer->getTransport()->getLibelleTransport() == "TGV"){
-                $content = $content + $deplacer->getCout() ;
-            }elseif ($deplacer->getTransport()->getLibelleTransport() == "Tram"){
-                $content = $content + 5 ;
             }elseif ($deplacer->getTransport()->getVoiture() != null){
                 $content = $content + $deplacer->getCout() ;
             }

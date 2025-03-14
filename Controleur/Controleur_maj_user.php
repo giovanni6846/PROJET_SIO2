@@ -21,6 +21,7 @@ if ($utilisateur->getRole() == 3){
     $ville = \App\Modele\Modele_Ville::ville();
     $Vue->setEntete(new \App\Vue\Vue_Structure_Entete_Utilisateur());
     $Vue->addToCorps(new \App\Vue\Vue_Utilisateur($utilisateur, $ville));
+    $Vue->addToCorps(new \App\Vue\Vue_Selection_Ville($ville));
 }elseif ($utilisateur->getRole() == 1){
     $id = $_POST['id_utilisateur'];
     $nom = $_POST['nom'];

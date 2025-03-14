@@ -27,9 +27,13 @@ class Hebergement
     #[Column(type: 'string', length: 100)]
     private string $nom_hotel;
 
-    public function __construct(string $nom_mission)
+    #[ManyToOne(targetEntity: Prix::class, inversedBy: 'prix', cascade: ["persist", "remove"])]
+    private Prix $prix;
+
+    public function __construct(string $nom_mission, Prix $prix)
     {
       $this->nom_hotel = $nom_mission;
+      $this->prix = $prix;
     }
 
     public function getId(): int
@@ -45,5 +49,15 @@ class Hebergement
     public function setNomHotel(string $nom_hotel): void
     {
         $this->nom_hotel = $nom_hotel;
+    }
+
+    public function getPrix(): Prix
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(Prix $prix): void
+    {
+        $this->prix = $prix;
     }
 }

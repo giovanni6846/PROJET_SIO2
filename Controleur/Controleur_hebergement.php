@@ -1,6 +1,8 @@
 <?php
 
 use App\Entity\Hebergement;
+use App\Modele\Modele_Prix;
+
 global $entityManager;
 
 $mission = $_POST["mission"];
@@ -10,6 +12,7 @@ $nbr_nuit = $_POST["nbr_nuit"];
 
 $mission = \App\Modele\Modele_Mission::mission_search($mission);
 $find_hebergement = \App\Modele\Modele_Hebergement::search($_POST["nom_hotel"]);
+$tarif = Modele_Prix::search("Hébergement");
 if ($find_hebergement != NULL) {
     if(isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         // Informations sur le fichier téléchargé

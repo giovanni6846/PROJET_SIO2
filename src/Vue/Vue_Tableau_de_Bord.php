@@ -3,6 +3,7 @@
 namespace App\Vue;
 
 use App\Entity\Mission;
+use App\Entity\Prix;
 use App\Modele\Modele_Mission;
 use App\Utilitaire\Vue_Composant;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,8 +13,6 @@ class Vue_Tableau_de_Bord extends Vue_Composant
     private string $msgErreur;
     private array $justificatif;
     private ?Mission $mission;
-
-
 
     public function __construct($mission = null,  $justificatif = [], $msgErreur = "")
     {
@@ -27,6 +26,10 @@ class Vue_Tableau_de_Bord extends Vue_Composant
         ob_start(); // Démarre la capture de sortie
         ?>
         <body>
+        <script>
+            const missionStatus = <?php echo json_encode($this->mission ? $this->mission->getStatus() : ''); ?>;
+            const justificatifs = <?= json_encode($this->justificatif) ?>;
+        </script>
         <!-- Header -->
         <header>
             <h1>Détails de la Mission <?= htmlspecialchars($this->mission->getNomMission()) ?></h1>
@@ -138,13 +141,13 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                         }else{
                             echo(htmlspecialchars($this->mission->getHebergement()->getNomHotel()));
                         } ?></p>
-                    <p><strong>Coût :</strong> <?= htmlspecialchars($this->mission->getNbNuit()) * 75 ?> €</p>
+                    <p><strong>Coût :</strong> <?= htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) * htmlspecialchars($this->mission->getNbNuit()) ?> €</p>
                 </div>
 
                 <div class="frais-card">
                     <h3>Repas</h3>
                     <p><strong>Nombre de Repas :</strong> <?= htmlspecialchars($this->mission->getNbRepas()) ?></p>
-                    <p><strong>Coût Total :</strong> <?= (int)(htmlspecialchars($this->mission->getNbRepas()) * 20) ?> €</p>
+                    <p><strong>Coût Total :</strong> <?= (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) ?> €</p>
                 </div>
 
                 <div class="frais-deplacement">

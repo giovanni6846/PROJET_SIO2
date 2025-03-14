@@ -56,7 +56,10 @@ class Mission
     #[Column(type: 'string', length: 20)]
     private string $status;
 
-    public function __construct(string $nom_mission, datetime $date_debut, datetime $date_fin , int $nb_repas, int $nb_nuit,  Ville $ville , Employe $employe, ?Hebergement $hebergement, string $justificatif,string $status)
+    #[ManyToOne(targetEntity: Prix::class, inversedBy: 'prix', cascade: ["persist", "remove"])]
+    private Prix $prix;
+
+    public function __construct(string $nom_mission, datetime $date_debut, datetime $date_fin , int $nb_repas, int $nb_nuit,  Ville $ville , Employe $employe, ?Hebergement $hebergement, string $justificatif,string $status, Prix $prix)
     {
         $this->nom_mission = $nom_mission;
         $this->date_debut = $date_debut;
@@ -69,6 +72,7 @@ class Mission
         $this->deplacement = new ArrayCollection();
         $this->justificatif = $justificatif;
         $this->status = $status;
+        $this->prix = $prix;
     }
 
     public function getId(): int
@@ -187,5 +191,15 @@ class Mission
     public function setStatus(string $status): void
     {
         $this->status = $status;
+    }
+
+    public function getPrix(): Prix
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(Prix $prix): void
+    {
+        $this->prix = $prix;
     }
 }

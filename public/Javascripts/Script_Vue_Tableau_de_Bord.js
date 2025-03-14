@@ -1,9 +1,10 @@
 // Récupérer le statut de la mission depuis PHP
-const missionStatus = "<?= htmlspecialchars($this->mission->getStatus()) ?>"; // Assurez-vous que cette variable est correctement transmise
+ // Assurez-vous que cette variable est correctement transmise
 
 // Fonction pour griser les boutons si le statut n'est pas "En-Cours"
 function disableButtons() {
     if (missionStatus !== "En-Cours") {
+        console.log(missionStatus);
         // Désactiver les boutons
         document.querySelectorAll('.ajouter button, .supprimer button, .status button').forEach(button => {
             button.disabled = true;
@@ -15,9 +16,6 @@ function disableButtons() {
 // Appeler la fonction après que la page soit complètement chargée
 window.onload = disableButtons;
 // Justificatifs reçus depuis PHP sous forme d'un tableau
-const justificatifs = <?= json_encode($this->justificatif) ?
->
-;
 
 const container = document.getElementById('justificatifsContainer');
 

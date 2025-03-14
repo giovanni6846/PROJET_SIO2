@@ -10,8 +10,6 @@ class Vue_Structure_Entete_TDB extends Vue_Composant
 
     function donneTexte(): string
     {
-
-
         return "
 <html lang='fr'>
 <head>

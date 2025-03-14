@@ -10,13 +10,10 @@ if (isset($_POST["transport"])){
     $transport = $_POST["transport"];
     $transport = \App\Modele\Modele_Transport::ajout_transport($transport);
     $mission = \App\Modele\Modele_Mission::mission_search($mission);
-    if ($transport->getLibelleTransport() == "Tram"){
-        $cout = 5;
-    }elseif ($transport->getLibelleTransport() == "Avion"){
-        $cout = 100;
-    }elseif ($transport->getLibelleTransport() == "Taxi"){
-        $cout = $_POST["cout"];
+    if ($transport->getLibelleTransport() == "Tram" || "Avion" || "Train") {
+        $cout = $transport->getPrix()->getMontant();
     }
+
     if(isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         // Informations sur le fichier téléchargé
         $image = $_FILES['image'];
