@@ -1,43 +1,61 @@
+/* Fond général */
 body {
-    background: #f0aa2a;
+    background: rgb(77, 148, 197);
     margin: 0;
     font-family: Arial, sans-serif;
-    display: flex; /* Ajout pour centrer le contenu */
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
-    height: 100vh; /* Hauteur de l'écran pour un centrage vertical parfait */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
-
-/* Centrer le titre principal */
-h1 {
+.ntf {
     text-align: center;
-    color: #333;
-    margin: 20px 0;
-    font-size: 2em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: xxx-large;
+    color: white;
 }
-
 /* Conteneur principal */
-div {
-    width: 50%;
+.container {
+    display: flex;
+    width: 120%;
+    max-width: 800px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Pour éviter les débordements */
+}
+
+/* Section gauche (image) */
+.left-section {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 130, 152, 0.2);
     padding: 20px;
-    background: rgba(255, 192, 203, 0.2); /* Fond rose transparent */
-    border: 1px solid rgba(255, 192, 203, 0.5);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    text-align: center; /* Centrer le contenu */
 }
 
-/* Formulaire */
-form {
-    margin: 20px 0;
+.left-section img {
+    width: 80%;
+    max-width: 260px;
+}
+
+/* Section droite (formulaire) */
+.right-section {
+    width: 60%;
+    padding: 40px;
     text-align: center;
+background: rgba(147, 147, 147, 0.84);
 }
 
-/* Titres des sections */
-form h1 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
+/* Titres */
+h1 {
     color: #333;
+    font-size: 1.8em;
+    margin-bottom: 15px;
 }
 
 /* Labels */
@@ -51,31 +69,37 @@ label {
 /* Champs d'entrée */
 input[type='text'],
 input[type='password'] {
-    width: calc(100% - 20px); /* Largeur ajustée avec padding */
-    padding: 10px;
-    margin: 10px 0;
+    width: 100%;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 25px;
     box-sizing: border-box;
+    font-size: 1em;
+    background: #f5f5f5;
+    text-align: center;
 }
 
 /* Boutons */
 button[type='submit'] {
-    background-color: #53af57;
     color: white;
-    padding: 12px 20px;
-    margin: 15px 0;
+    padding: 12px;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 1em;
+    border-radius: 25px;
+    font-size: 1.2em;
     width: 100%;
+    transition: 0.3s;
+    margin-top: 10px;
+    background-color: rgb(83, 175, 87);
 }
 
 button[type='submit']:hover {
     background-color: white;
-    color: #53af57;
-    border: 1px solid #53af57;
+    color: rgb(83, 175, 87);
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(83, 175, 87);
+    border-image: initial;
 }
 
 /* Message d'erreur */

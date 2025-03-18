@@ -175,7 +175,7 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                 <div class="frais-card total">
                     <h3>Total</h3>
                     <p><strong>Coût Total Mission :</strong>
-                        <?=  htmlspecialchars($this->mission->getNbNuit()) * 75 + (int)(htmlspecialchars($this->mission->getNbRepas()) * 20) + (float)(htmlspecialchars(Modele_Mission::cout($this->mission))) ?> €
+                        <?=  htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) * htmlspecialchars($this->mission->getNbNuit()) + (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) + (float)(htmlspecialchars(Modele_Mission::cout($this->mission))) ?> €
                     </p>
                 </div>
             </div>

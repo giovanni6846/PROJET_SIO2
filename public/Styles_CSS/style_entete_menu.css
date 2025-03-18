@@ -6,52 +6,92 @@ body {
     background-color: #f4f4f9;
 }
 
-/* En-tête avec le titre de la page */
+/* Header avec le titre de la page */
 header {
     background-color: #2c3e50;
     color: white;
-    padding: 10px 0;
-    text-align: center;
-}
-
-/* Menu de navigation en haut */
-nav {
-    background-color: #34495e;
-    overflow: hidden;
-}
-
-nav a {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-}
-
-nav a:hover {
-    background-color: #1abc9c;
-}
-
-/* Conteneur principal du contenu */
-.container {
     padding: 20px;
-}
-
-/* Style pour chaque élément de menu */
-.menu-item {
-    margin: 20px;
-    padding: 10px;
-    background-color: #3498db;
-    color: white;
     text-align: center;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
+    font-size: 24px;
 }
 
+/* Conteneur du menu */
+.menu-container {
+    display: flex;
+    justify-content: space-around; /* Distribution des éléments */
+    align-items: center;
+    height: calc(100vh - 140px); /* Laisser de la place pour le header et footer */
+    width: 100%;
+}
+
+/* Styles pour chaque élément de menu (icônes) */
+.menu-item {
+    width: 150px; /* Largeur du cercle */
+    height: 150px; /* Hauteur du cercle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3498db; /* Couleur de fond */
+    opacity: 1; /* Visible dès le début */
+    transform: scale(1); /* Taille normale */
+    transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease, height 0.3s ease;
+    cursor: pointer;
+    border-radius: 50%; /* Pour que ce soit circulaire */
+    overflow: hidden;
+    position: relative;
+}
+
+/* Contenu à l'intérieur du cercle */
+.menu-item .menu-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centrer l'image et le texte */
+    opacity: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+}
+
+/* Les images deviennent circulaires */
+.menu-item .menu-image {
+    width: 70px; /* Taille de l'icône circulaire */
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%; /* Rendre l'image circulaire */
+    margin-right: 10px; /* Espace entre l'image et le texte */
+}
+
+/* Texte du menu */
+.menu-text {
+    font-size: 18px;
+    color: white;
+    opacity: 1;
+}
+
+/* Animation de survol */
 .menu-item:hover {
-    background-color: #2980b9;
+    width: 250px; /* Agrandir un peu en largeur */
+    height: calc(100vh - 100px); /* Agrandir en hauteur jusqu'à la hauteur totale moins le header et footer */
+    border-radius: 0; /* Supprimer l'arrondi du cercle */
+    z-index: 1; /* Mettre l'élément au-dessus pour qu'il ne cache pas les autres éléments */
+}
+
+.menu-item:hover .menu-content {
+    opacity: 1;
+    transform: translateY(0); /* Positionner le texte correctement */
+}
+
+/* Lors du survol, l'image doit rester dans le grand rectangle */
+.menu-item:hover .menu-image {
+    opacity: 1; /* L'image reste visible */
+}
+
+/* Texte du menu devient visible quand le cercle devient un grand rectangle */
+.menu-item:hover .menu-text {
+    opacity: 1;
+    transform: translateY(0); /* Positionner le texte correctement */
+    font-size: 24px; /* Agrandir le texte légèrement */
+    text-align: center;
+    padding: 20px;
 }
 
 /* Pied de page fixe */
