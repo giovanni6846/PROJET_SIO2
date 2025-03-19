@@ -14,7 +14,7 @@ class Vue_Tableau_de_Bord extends Vue_Composant
     private array $justificatif;
     private ?Mission $mission;
 
-    public function __construct($mission = null,  $justificatif = [], $msgErreur = "")
+    public function __construct($mission = null, $justificatif = [], $msgErreur = "")
     {
         $this->msgErreur = $msgErreur;
         $this->mission = $mission;
@@ -28,7 +28,7 @@ class Vue_Tableau_de_Bord extends Vue_Composant
         <body>
         <script>
             const missionStatus = <?php echo json_encode($this->mission ? $this->mission->getStatus() : ''); ?>;
-            const justificatifs = <?= json_encode($this->justificatif) ?>;
+            const typeRole = <?php echo json_encode($_SESSION['role']); ?>;
         </script>
         <!-- Header -->
         <header>
@@ -37,10 +37,10 @@ class Vue_Tableau_de_Bord extends Vue_Composant
 
         <!-- Navigation -->
         <nav>
-            <a href='index.php?action=tableau_de_bord'>Tableau de Bord</a>
-            <a href='index.php?action=ajouter_NDF'>Ajouter une Note de Frais</a>
-            <a href='index.php?action=mon_espace'>Mon Espace</a>
-            <a href='index.php?action=deconnexion'>Se Déconnecter</a>
+            <a href='index.php?action=tableau_de_bord' class='TDB'>Tableau de Bord</a>
+            <a href='index.php?action=ajouter_NDF' class='NDF'>Ajouter une Note de Frais</a>
+            <a href='index.php?action=mon_espace' class='ME'>Mon Espace</a>
+            <a href='index.php?action=deconnexion' class='SD'>Se Déconnecter</a>
         </nav>
 
         <!-- Buttons -->
@@ -57,7 +57,9 @@ class Vue_Tableau_de_Bord extends Vue_Composant
 
         <!-- Main Content -->
         <div class="container">
+
             <h2>Informations sur la Mission</h2>
+            <div class="mission-container">
             <div class="mission-details">
                 <h3>Détails</h3>
                 <p><strong>Nom de la Mission :</strong> <?= htmlspecialchars($this->mission->getNomMission()) ?></p>
@@ -65,15 +67,17 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                     <?= htmlspecialchars($this->mission->getEmploye()->getPrenom()) ?></p>
                 <p><strong>Lieu :</strong> <?= htmlspecialchars($this->mission->getVille()->getNomVille()) ?>
                     <?= htmlspecialchars($this->mission->getVille()->getCpVille()) ?></p>
-                <p><strong>Date de Début :</strong> <?= htmlspecialchars($this->mission->getDateDebut()->format('d/m/Y')) ?></p>
-                <p><strong>Date de Fin :</strong> <?= htmlspecialchars($this->mission->getDateFin()->format('d/m/Y')) ?></p>
+                <p><strong>Date de Début
+                        :</strong> <?= htmlspecialchars($this->mission->getDateDebut()->format('d/m/Y')) ?></p>
+                <p><strong>Date de Fin :</strong> <?= htmlspecialchars($this->mission->getDateFin()->format('d/m/Y')) ?>
+                </p>
                 <p><strong>Nombres de repas :</strong> <?= htmlspecialchars($this->mission->getNbRepas()) ?></p>
                 <p><strong>Nombres de nuits :</strong> <?= htmlspecialchars($this->mission->getNbNuit()) ?></p>
-                <p><strong>Transports :</strong> <?php if ($this->mission->getHebergement() == Null){
-                    echo "";
-                    }else{
+                <p><strong>Transports :</strong> <?php if ($this->mission->getHebergement() == Null) {
+                        echo "";
+                    } else {
                         echo(htmlspecialchars($this->mission->getHebergement()->getNomHotel()));
-                    }?></p>
+                    } ?></p>
                 <p><strong>Déplacement :</strong>
                     <?php
                     $content = '';
@@ -84,101 +88,135 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                     ?>
                 </p>
             </div>
-
             <!-- Ajouter et Supprimer des Frais -->
-            <?php if ($_SESSION['role'] != 2): ?>
-                <!-- Afficher les boutons pour les rôles autres que 2 -->
-                <div class="ajouter">
-                    <form action="index.php" method="post">
-                        <input type="hidden" name="mission" value="<?= htmlspecialchars($this->mission->getId()) ?>">
-                        <button type="submit" name="action" value="ajouter">Ajouter des frais</button>
-                    </form>
-                </div>
-                <div class="supprimer">
-                    <form action="index.php" method="post">
-                        <input type="hidden" name="mission" value="<?= htmlspecialchars($this->mission->getId()) ?>">
-                        <button type="submit" name="action" value="supprimer">Supprimer des frais</button>
-                    </form>
-                </div>
-                <div class="status">
-                    <form action="index.php" method="post">
-                        <input type="hidden" name="mission" value="<?= htmlspecialchars($this->mission->getId()) ?>">
-                        <button type="submit" name="action" value="status">Confirmer la note de frais</button>
-                    </form>
-                </div>
-            <?php else: ?>
-                <div class="boutons-container">
-                    <div class="accepter">
+            <div class="button">
+                <?php if ($_SESSION['role'] != 2): ?>
+                    <!-- Afficher les boutons pour les rôles autres que 2 -->
+                    <div class="ajouter">
                         <form action="index.php" method="post">
-                            <input type="hidden" name="mission" value="<?= htmlspecialchars($this->mission->getId()) ?>">
-                            <button type="submit" name="action" value="accepter">Accepter</button>
+                            <input type="hidden" name="mission"
+                                   value="<?= htmlspecialchars($this->mission->getId()) ?>">
+                            <button type="submit" name="action" value="ajouter">Ajouter des frais</button>
                         </form>
                     </div>
-                    <div class="rejeter">
+                    <div class="supprimer">
                         <form action="index.php" method="post">
-                            <input type="hidden" name="mission" value="<?= htmlspecialchars($this->mission->getId()) ?>">
-                            <button type="submit" name="action" value="rejeter">Rejeter</button>
+                            <input type="hidden" name="mission"
+                                   value="<?= htmlspecialchars($this->mission->getId()) ?>">
+                            <button type="submit" name="action" value="supprimer">Supprimer des frais</button>
                         </form>
                     </div>
-                </div>
-            <?php endif; ?>
+                    <div class="status">
+                        <form action="index.php" method="post">
+                            <input type="hidden" name="mission"
+                                   value="<?= htmlspecialchars($this->mission->getId()) ?>">
+                            <button type="submit" name="action" value="status">Confirmer la note de frais</button>
+                        </form>
+                    </div>
+                <?php else: ?>
+                    <div class="boutons-container">
+                        <div class="accepter">
+                            <form action="index.php" method="post">
+                                <input type="hidden" name="mission"
+                                       value="<?= htmlspecialchars($this->mission->getId()) ?>">
+                                <button type="submit" name="action" value="accepter">Accepter</button>
+                            </form>
+                        </div>
+                        <div class="rejeter">
+                            <form action="index.php" method="post">
+                                <input type="hidden" name="mission"
+                                       value="<?= htmlspecialchars($this->mission->getId()) ?>">
+                                <button type="submit" name="action" value="rejeter">Rejeter</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php endif; ?>
 
-            <div class="button-imp">
-                <form action="index.php" method="post">
-                    <input type="hidden" name="mission" value="<?= htmlspecialchars($this->mission->getId()) ?>">
-                    <button type="submit" name="action" value="pdf">Impression PDF</button>
-                </form>
-            </div>
-
-            <div id="justificatifsContainer"></div> <!-- Ici vont être ajoutés les selects -->
-
-            <!-- Détails des Frais -->
-            <div class="detail_frais">
-                <div class="frais-card">
-                    <h3>Hébergement</h3>
-                    <p><strong>Hôtel :</strong> <?php if ($this->mission->getHebergement() == Null){
-                            echo "";
-                        }else{
-                            echo(htmlspecialchars($this->mission->getHebergement()->getNomHotel()));
-                        } ?></p>
-                    <p><strong>Coût :</strong> <?= htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) * htmlspecialchars($this->mission->getNbNuit()) ?> €</p>
-                </div>
-
-                <div class="frais-card">
-                    <h3>Repas</h3>
-                    <p><strong>Nombre de Repas :</strong> <?= htmlspecialchars($this->mission->getNbRepas()) ?></p>
-                    <p><strong>Coût Total :</strong> <?= (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) ?> €</p>
-                </div>
-
-                <div class="frais-deplacement">
-                    <h3>Transport</h3>
-                    <p><strong>Nombre de transports:</strong> <?php
-                                                                $nbr = 0;
-                                                                foreach ($this->mission->getDeplacement() as $deplacer) {
-                                                                    $nbr++;
-                                                                };
-                                                                echo $nbr;?></p>
-                    <p><strong>Coût :</strong> <?php
-                         $content = Modele_Mission::cout($this->mission);
-                         echo $content;
-                        ' ';
-                        ?> €</p>
-                </div>
-
-                <div class="frais-card">
-                    <h3>Statut</h3>
-                    <p class="status-text <?= strtolower($this->mission->getStatus()) ?>">
-                        <?= htmlspecialchars($this->mission->getStatus()) ?>
-                    </p>
-                </div>
-
-                <div class="frais-card total">
-                    <h3>Total</h3>
-                    <p><strong>Coût Total Mission :</strong>
-                        <?=  htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) * htmlspecialchars($this->mission->getNbNuit()) + (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) + (float)(htmlspecialchars(Modele_Mission::cout($this->mission))) ?> €
-                    </p>
+                <div class="button-imp">
+                    <form action="index.php" method="post">
+                        <input type="hidden" name="mission" value="<?= htmlspecialchars($this->mission->getId()) ?>">
+                        <button type="submit" name="action" value="pdf">Impression PDF <img src="public/image/pdf.png"
+                                                                                            alt="pdf" class="pdf-icon"/>
+                        </button>
+                    </form>
                 </div>
             </div>
+        </div>
+
+        <div id="justificatifsContainer">
+            <?php foreach ($this->justificatif as $justificatif) { ?>
+                <div class='note' onclick='openImage(this)'>
+                    <h4>Note <?= htmlspecialchars($justificatif['nom']) ?></h4>
+                    <img src="<?= htmlspecialchars($justificatif['chemin']) ?>" alt="Image inexistante">
+                </div>
+            <?php } ?>
+        </div>
+
+        <div class="modal" onclick="closeImage()">
+            <img src="" alt="Image Agrandie" class="modal-content">
+        </div>
+
+        <!-- Détails des Frais -->
+        <div class="detail_frais">
+            <div class="frais-card">
+                <h3>
+                    <img src="public/image/hebergement.png" alt="Hébergement" class="hebergement-icon"/>
+                    Hébergement
+                </h3>
+                <p><strong>Hôtel :</strong> <?php if ($this->mission->getHebergement() == Null) {
+                        echo "";
+                    } else {
+                        echo(htmlspecialchars($this->mission->getHebergement()->getNomHotel()));
+                    } ?></p>
+                <p><strong>Coût
+                        :</strong> <?= htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) * htmlspecialchars($this->mission->getNbNuit()) ?>
+                    €</p>
+            </div>
+
+            <div class="frais-card">
+                <h3>
+                    <img src="public/image/repas.png" alt="Repas" class="repas-icon"/>
+                    Repas
+                </h3>
+                <p><strong>Nombre de Repas :</strong> <?= htmlspecialchars($this->mission->getNbRepas()) ?></p>
+                <p><strong>Coût Total
+                        :</strong> <?= (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) ?>
+                    €</p>
+            </div>
+
+            <div class="frais-deplacement">
+                <h3>
+                    <img src="public/image/transport.png" alt="Transport" class="transport-icon"/>
+                    Transport
+                </h3>
+                <p><strong>Nombre de transports:</strong> <?php
+                    $nbr = 0;
+                    foreach ($this->mission->getDeplacement() as $deplacer) {
+                        $nbr++;
+                    };
+                    echo $nbr; ?></p>
+                <p><strong>Coût :</strong> <?php
+                    $content = Modele_Mission::cout($this->mission);
+                    echo $content;
+                    ' ';
+                    ?> €</p>
+            </div>
+
+            <div class="frais-card">
+                <h3>Statut</h3>
+                <p class="status-text <?= strtolower($this->mission->getStatus()) ?>">
+                    <?= htmlspecialchars($this->mission->getStatus()) ?>
+                </p>
+            </div>
+
+            <div class="frais-card total">
+                <h3>Total</h3>
+                <p><strong>Coût Total Mission :</strong>
+                    <?= htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) * htmlspecialchars($this->mission->getNbNuit()) + (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) + (float)(htmlspecialchars(Modele_Mission::cout($this->mission))) ?>
+                    €
+                </p>
+            </div>
+        </div>
         </div>
 
         <!-- Footer -->

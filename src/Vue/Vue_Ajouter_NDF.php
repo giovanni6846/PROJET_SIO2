@@ -20,7 +20,7 @@ class Vue_Ajouter_NDF extends Vue_Composant
         <h1>Ajouter note de frais </h1>
     </header>
     <nav>
-        <a href='index.php?action=tableau_de_bord'>Tableau de Bord</a>
+        <a href='index.php?action=mission'>Tableau de Bord</a>
         <a href='index.php?action=mon_espace'>Mon Espace</a>
         <a href='index.php?action=deconnexion'>Se Déconnecter</a>
     </nav>

@@ -13,57 +13,32 @@ function disableButtons() {
     }
 }
 
+function hiddenMenu() {
+    // Vérifier le rôle de l'utilisateur
+    if (typeRole !== 3) {
+        console.log(missionStatus);
+        // Désactiver les liens spécifiques en fonction de leurs classes
+        document.querySelectorAll('nav a.TDB, nav a.NDF, nav a.ME').forEach(a => {
+            a.style.display = 'none';  // Cacher ces liens
+        });
+    }
+}
+
 // Appeler la fonction après que la page soit complètement chargée
+window.onload = hiddenMenu;
 window.onload = disableButtons;
-// Justificatifs reçus depuis PHP sous forme d'un tableau
 
-const container = document.getElementById('justificatifsContainer');
 
-justificatifs.forEach((justificatif, index) => {
-    // Créer un label et un select pour chaque justificatif
-    const label = document.createElement('label');
-    label.textContent = `Justificatif ${index + 1} : `;
-    const select = document.createElement('select');
-    select.setAttribute('data-index', index); // Indiquer l'index de l'élément
+// Fonction pour afficher l'image en grand
+function openImage(element) {
+    const modal = document.querySelector('.modal');
+    const modalImage = document.querySelector('.modal-content');
 
-    // Ajouter une option par défaut pour chaque select
-    const defaultOption = document.createElement('option');
-    defaultOption.value = "";
-    defaultOption.textContent = "-- Choisissez un justificatif --";
-    select.appendChild(defaultOption);
+    modalImage.src = element.querySelector('img').src;
+    modal.classList.add('show');
+}
 
-    // Ajouter l'option avec le nom du justificatif
-    const option = document.createElement('option');
-    option.value = justificatif.chemin;
-    option.textContent = justificatif.nom;
-    select.appendChild(option);
-
-    // Créer une div pour afficher l'image associée
-    const imageContainer = document.createElement('div');
-    imageContainer.setAttribute('id', 'image-' + index);
-    const imageElement = document.createElement('img');
-    imageElement.setAttribute('id', 'image-' + index + '-img');
-    imageElement.style.display = 'none';
-
-    // Forcer la taille de l'image
-    imageElement.style.width = '750px';  // Exemple de largeur forcée
-    imageElement.style.height = '500px'; // Exemple de hauteur forcée
-    imageContainer.appendChild(imageElement);
-
-    // Ajouter le label, select et l'image à la page
-    container.appendChild(label);
-    container.appendChild(select);
-    container.appendChild(imageContainer);
-
-    // Ajouter l'événement change sur le select pour changer l'image
-    select.addEventListener('change', function () {
-        const selectedValue = select.value;
-        const imageElement = document.getElementById('image-' + index + '-img');
-        if (selectedValue) {
-            imageElement.src = selectedValue; // Changer la source de l'image
-            imageElement.style.display = 'block'; // Afficher l'image
-        } else {
-            imageElement.style.display = 'none'; // Cacher l'image si aucune sélection
-        }
-    });
-});
+// Fonction pour fermer l'image en cliquant en dehors
+function closeImage() {
+    document.querySelector('.modal').classList.remove('show');
+}

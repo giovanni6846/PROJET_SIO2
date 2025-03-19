@@ -34,8 +34,18 @@ nav a {
     font-weight: bold;
 }
 
+
 nav a:hover {
     text-decoration: underline;
+}
+
+.mission-container {
+    display: flex;
+    justify-content: space-between; /* Séparation gauche/droite */
+    align-items: flex-start; /* Alignement en haut */
+    gap: 20px; /* Espace entre les deux boîtes */
+    max-width: 900px; /* Largeur max */
+    margin: 20px auto; /* Centrage horizontal */
 }
 
 /* Main container styles */
@@ -56,24 +66,44 @@ h2 {
 
 /* Mission details styles */
 .mission-details {
-    margin: 20px 0;
+    flex: 1; /* Prend tout l'espace disponible à gauche */
+    max-width: 550px; /* Largeur max */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.button {
+    max-width: 550px;
+    max-height: 330px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
 }
 
 .mission-details h3 {
     color: #007bff;
     border-bottom: 2px solid #007bff;
     padding-bottom: 5px;
+    width: 100%;
+    font-size: 18px;
 }
 
 .mission-details p {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
-    margin: 10px 0;
+    margin: 5px 0;
+    white-space: nowrap; /* Empêche les retours à la ligne inutiles */
 }
 
 .mission-details p strong {
     color: #343a40;
 }
+
 
 /* Button container for navigation buttons */
 .button-container {
@@ -307,18 +337,20 @@ button:disabled {
 /* Conteneur parent pour centrer les boutons */
 .boutons-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 10px;
 }
 
 /* Style général des boutons */
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    margin: 5px;
+    font-size: 14px;
+    transition: background 0.3s;
+    width: 100%;
 }
 
 /* Bouton Accepter */
@@ -342,3 +374,101 @@ button {
 .rejeter button:hover {
     background-color: #c82333;
 }
+
+.transport-icon {
+    width: 40px; /* Taille de l'image */
+    height: 40px; /* Assurez-vous que l'image est carrée */
+    margin-right: 10px; /* Espacement entre l'image et le titre */
+    vertical-align: middle; /* Aligne l'image verticalement avec le texte */
+}
+
+.repas-icon {
+    width: 40px; /* Taille de l'image */
+    height: 40px; /* Assurez-vous que l'image est carrée */
+    margin-right: 10px; /* Espacement entre l'image et le titre */
+    vertical-align: middle; /* Aligne l'image verticalement avec le texte */
+}
+
+.hebergement-icon {
+    width: 40px; /* Taille de l'image */
+    height: 40px; /* Assurez-vous que l'image est carrée */
+    margin-right: 10px; /* Espacement entre l'image et le titre */
+    vertical-align: middle; /* Aligne l'image verticalement avec le texte */
+}
+
+.pdf-icon {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+#justificatifsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 75px;
+}
+
+.note {
+    text-align: center;
+    cursor: pointer;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.note h4 {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.note img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.note img:hover {
+    transform: scale(1.1);
+}
+
+/* Style de la fenêtre modale */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transition: transform 0.3s ease-in-out;
+}
+
+.modal.show {
+    display: flex;
+}
+
+
+.button-imp{
+    text-align: center; /* Centre le contenu horizontalement */
+    margin: 11px 0; /* Ajoute de l'espace entre les sections */
+}
+

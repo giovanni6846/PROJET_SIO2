@@ -40,6 +40,7 @@ nav a {
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 5px;
+    font-weight: bold;
     transition: background-color 0.3s;
 }
 
