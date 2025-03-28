@@ -55,6 +55,10 @@ class Vue_Tableau_de_Bord extends Vue_Composant
             </form>
         </div>
 
+        <!-- Message d'erreur -->
+        <?php if ($this->msgErreur !== ""): ?>
+            <div class="error-message"><?= htmlspecialchars($this->msgErreur) ?></div>
+        <?php endif; ?>
         <!-- Main Content -->
         <div class="container">
 
@@ -73,18 +77,20 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                 </p>
                 <p><strong>Nombres de repas :</strong> <?= htmlspecialchars($this->mission->getNbRepas()) ?></p>
                 <p><strong>Nombres de nuits :</strong> <?= htmlspecialchars($this->mission->getNbNuit()) ?></p>
-                <p><strong>Transports :</strong> <?php if ($this->mission->getHebergement() == Null) {
-                        echo "";
+                <p><strong>Hébergement :</strong> <?php if ($this->mission->getHebergement() == Null) {
+                        echo "Aucun Hébergement";
                     } else {
                         echo(htmlspecialchars($this->mission->getHebergement()->getNomHotel()));
                     } ?></p>
                 <p><strong>Déplacement :</strong>
                     <?php
                     $content = '';
+
                     foreach ($this->mission->getDeplacement() as $deplacer) {
                         $content .= htmlspecialchars($deplacer->getTransport()->getLibelleTransport()) . ' ';
                     }
-                    echo $content;
+
+                    echo !empty($content) ? $content : "Aucun déplacement";
                     ?>
                 </p>
             </div>
@@ -163,25 +169,34 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                     <img src="public/image/hebergement.png" alt="Hébergement" class="hebergement-icon"/>
                     Hébergement
                 </h3>
-                <p><strong>Hôtel :</strong> <?php if ($this->mission->getHebergement() == Null) {
-                        echo "";
-                    } else {
-                        echo(htmlspecialchars($this->mission->getHebergement()->getNomHotel()));
-                    } ?></p>
-                <p><strong>Coût
-                        :</strong> <?= htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) * htmlspecialchars($this->mission->getNbNuit()) ?>
-                    €</p>
+                <?php if ($this->mission->getHebergement() !== null) : ?>
+                    <p><strong>Hôtel :</strong>
+                        <?php echo htmlspecialchars($this->mission->getHebergement()->getNomHotel()); ?>
+                    </p>
+                    <p><strong>Coût :</strong>
+                        <?php
+                        echo htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) *
+                            htmlspecialchars($this->mission->getNbNuit());
+                        ?> €
+                    </p>
+                <?php else : ?>
+                    <p><strong>Aucun hébergement</strong></p>
+                <?php endif; ?>
             </div>
-
             <div class="frais-card">
                 <h3>
                     <img src="public/image/repas.png" alt="Repas" class="repas-icon"/>
                     Repas
                 </h3>
-                <p><strong>Nombre de Repas :</strong> <?= htmlspecialchars($this->mission->getNbRepas()) ?></p>
-                <p><strong>Coût Total
-                        :</strong> <?= (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) ?>
-                    €</p>
+                <?php if ($this->mission->getNbRepas() > 0) : ?>
+                    <p><strong>Nombre de Repas :</strong> <?= htmlspecialchars($this->mission->getNbRepas()) ?></p>
+                    <p><strong>Coût Total :</strong>
+                        <?= (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) ?> €
+                    </p>
+                <?php else : ?>
+                    <p><strong>Aucun repas</strong></p>
+                <?php endif; ?>
+
             </div>
 
             <div class="frais-deplacement">
@@ -189,17 +204,18 @@ class Vue_Tableau_de_Bord extends Vue_Composant
                     <img src="public/image/transport.png" alt="Transport" class="transport-icon"/>
                     Transport
                 </h3>
-                <p><strong>Nombre de transports:</strong> <?php
-                    $nbr = 0;
-                    foreach ($this->mission->getDeplacement() as $deplacer) {
-                        $nbr++;
-                    };
-                    echo $nbr; ?></p>
-                <p><strong>Coût :</strong> <?php
-                    $content = Modele_Mission::cout($this->mission);
-                    echo $content;
-                    ' ';
-                    ?> €</p>
+                <?php
+                $nbr = count($this->mission->getDeplacement());
+                $content = Modele_Mission::cout($this->mission);
+                ?>
+
+                <?php if ($nbr > 0) : ?>
+                    <p><strong>Nombre de transports :</strong> <?= $nbr ?></p>
+                    <p><strong>Coût :</strong> <?= $content ?> €</p>
+                <?php else : ?>
+                    <p><strong>Aucun transport</strong></p>
+                <?php endif; ?>
+
             </div>
 
             <div class="frais-card">
@@ -212,7 +228,10 @@ class Vue_Tableau_de_Bord extends Vue_Composant
             <div class="frais-card total">
                 <h3>Total</h3>
                 <p><strong>Coût Total Mission :</strong>
-                    <?= htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) * htmlspecialchars($this->mission->getNbNuit()) + (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) + (float)(htmlspecialchars(Modele_Mission::cout($this->mission))) ?>
+                    <?php if ($this->mission->getHebergement() == Null and $this->mission->getNbNuit() == 0 and $this->mission->getNbRepas() == 0) {
+                                    echo "0";
+                                } else {
+                                    echo(htmlspecialchars($this->mission->getHebergement()->getPrix()->getMontant()) * htmlspecialchars($this->mission->getNbNuit()) + (int)(htmlspecialchars($this->mission->getNbRepas()) * htmlspecialchars($this->mission->getPrix()->getMontant())) + (float)(htmlspecialchars(Modele_Mission::cout($this->mission)))); } ?>
                     €
                 </p>
             </div>
@@ -223,11 +242,6 @@ class Vue_Tableau_de_Bord extends Vue_Composant
         <footer>
             <p>&copy; 2024 Gestion des Notes de Frais. Tous droits réservés.</p>
         </footer>
-
-        <!-- Message d'erreur -->
-        <?php if ($this->msgErreur !== ""): ?>
-            <div class="error-message"><?= htmlspecialchars($this->msgErreur) ?></div>
-        <?php endif; ?>
         </body>
         <?php
         return ob_get_clean(); // Retourne le contenu capturé

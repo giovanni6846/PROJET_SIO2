@@ -13,6 +13,18 @@ $nbr_nuit = $_POST["nbr_nuit"];
 $mission = \App\Modele\Modele_Mission::mission_search($mission);
 $find_hebergement = \App\Modele\Modele_Hebergement::search($_POST["nom_hotel"]);
 $tarif = Modele_Prix::search("Hébergement");
+$interval = $mission->getDateDebut()->diff($mission->getDateFin());
+
+/* Controle de validiter du nombre de nuits*/
+if ($nbr_nuit > $interval->days) {
+    $justificatif = \App\Modele\Modele_Mission::mission_justificatif($mission->getId());
+    $Vue->setEntete(new \App\Vue\Vue_Structure_Entete_TDB());
+    $Vue->addToCorps(new \App\Vue\Vue_Tableau_de_Bord($mission,$justificatif,"Le nombre de nuits est supérieurs aux nombres de nuits passer pendant le séjour"));
+    return;
+}
+
+
+
 if ($find_hebergement != NULL) {
     if(isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         // Informations sur le fichier téléchargé

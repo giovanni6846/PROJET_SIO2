@@ -9,6 +9,7 @@ include_once "bootstrap.php";
 use App\Entity\Employe;
 use App\Entity\Hebergement;
 use App\Entity\Mission;
+use App\Entity\Prix;
 use App\Entity\Ville;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -191,9 +192,10 @@ class Modele_Mission
         }
         $destination = $entityManager->getRepository(Ville::class)->findBy(['id' => $ville]);
         $employer = $entityManager->getRepository(Employe::class)->find($id);
+        $prix_repas = \App\Modele\Modele_Prix::search("Repas");
         $dateDebut = new DateTime($date_debut);
         $dateFin = new DateTime($date_fin);
-        $mission = New Mission($mission,$dateDebut,$dateFin,0,0,$destination[0],$employer,null,"","En-Cours");
+        $mission = New Mission($mission,$dateDebut,$dateFin,0,0,$destination[0],$employer,null,"","En-Cours",$prix_repas[0]);
         $entityManager->persist($mission);
         $entityManager->flush();
         return $mission;
