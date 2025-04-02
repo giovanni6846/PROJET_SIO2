@@ -69,7 +69,7 @@ if ($find_hebergement != NULL) {
         if (in_array($type_image, $extensions_autorisees)) {
             // Déplacer le fichier dans le dossier de téléchargement
             if (move_uploaded_file($tmp_image, $chemin_image)) {
-                $hebergement = new Hebergement($nom_hebergement);
+                $hebergement = new Hebergement($nom_hebergement, $tarif[0]);
                 $mission->setHebergement($hebergement);
                 $mission->setNbNuit((int)$nbr_nuit);
                 $mission->setJustificatif($chemin_image);

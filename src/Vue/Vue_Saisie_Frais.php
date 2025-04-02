@@ -37,7 +37,7 @@ class Vue_Saisie_Frais extends Vue_Composant
                 <label for="nom_hotel">Nombres de nuits</label>
                 <input type="text" id="nbr_nuit" name="nbr_nuit" required>
                 <label for="image">Ajouter un justificatif</label>
-                <input type="file" id="image" name="image" accept="image/*">
+                <input type="file" id="image" name="image" accept="image/*" required>
 
                 <button type="submit" name="action" value="hebergement">Enregistrer Hébergement</button>
             </form>
@@ -48,7 +48,7 @@ class Vue_Saisie_Frais extends Vue_Composant
                 <form action="index.php" method="post" enctype="multipart/form-data">
                     <label for="transport">Type de Transport</label>
                     <select id="transport" name="transport" onchange="toggleSelects('transport', 'voiture')">
-                        <option value= null >Transport</option>
+                        <option value= "null" >Transport</option>
                         <?php foreach ($this->transport as $transports): ?>
                             <?php if ($transports->getVoiture() == NULL): ?>
                                 <option value="<?= htmlspecialchars($transports->getId()) ?>">
@@ -60,7 +60,7 @@ class Vue_Saisie_Frais extends Vue_Composant
 
                     <label for="voiture">Voiture</label>
                     <select id="voiture" name="voiture" onchange="toggleSelects('voiture', 'transport'); showKilometersField()">
-                        <option value= null>Voiture</option>
+                        <option value= "null">Voiture</option>
                         <?php foreach ($this->transport as $transports): ?>
                             <?php if ($transports->getVoiture() != NULL): ?>
                                 <option value="<?= htmlspecialchars($transports->getId()) ?>">
@@ -76,7 +76,7 @@ class Vue_Saisie_Frais extends Vue_Composant
                     </div>
 
                     <label for="image">Ajouter un justificatif</label>
-                    <input type="file" id="image" name="image" accept="image/*">
+                    <input type="file" id="image" name="image" accept="image/*" required>
                     <input type="hidden" name="mission" value="<?= htmlspecialchars($this->mission->getId()) ?>">
                     <button type="submit" name="action" value="deplacement">Enregistrer Déplacement</button>
                 </form>

@@ -39,13 +39,6 @@ $entityManager = new EntityManager($connection, $config);
 //$joueur = $entityManager->getRepository(Joueur::class)->findOneBy(['nom' => 'Giroud']);
 $schemaTool = new SchemaTool($entityManager);
 
-
-
-
-// Vérifie que l'EntityManager est opérationnel
-echo "EntityManager créé avec succès.\n";
-
-
 // Génération des proxies (optionnel)
 $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
 if (!empty($metadata)) {

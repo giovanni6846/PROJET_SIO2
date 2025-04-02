@@ -6,7 +6,7 @@ class Vue_Ajouter_NDF extends Vue_Composant
 {
     private string $msgErreur;
 
-    public function __construct(string $msgErreur ="")
+    public function __construct( $msgErreur ="")
     {
         $this->msgErreur=$msgErreur;
     }
@@ -25,6 +25,9 @@ class Vue_Ajouter_NDF extends Vue_Composant
         <a href='index.php?action=deconnexion'>Se Déconnecter</a>
     </nav>
     <div class='form-container'>
+        <?php if ($this->msgErreur !== ""): ?>
+            <div class="error-message"><?= htmlspecialchars($this->msgErreur) ?></div>
+        <?php endif; ?>
         <h2>Ajouter une Note de Frais</h2>
         <form action='index.php' method='post'>
             <div class='form-group'>
